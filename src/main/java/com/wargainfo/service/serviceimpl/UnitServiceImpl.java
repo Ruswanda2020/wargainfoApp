@@ -10,7 +10,6 @@ import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
-import java.util.Optional;
 
 @Service
 @AllArgsConstructor
@@ -23,7 +22,7 @@ public class UnitServiceImpl implements UnitService{
     @Override
     public void createNewUnit(UnitCreateRequestDTO dto) {
 
-        HomeCategory homeCategory = homeCategoryService.findByName(dto.getHomeCategory());
+        HomeCategory homeCategory = homeCategoryService.findHomeCategoryByCode(dto.getHomeCategory());
         Unit unit = new Unit();
         unit.setHousingBlock(dto.getHousingBlock());
         unit.setHouseNumber(dto.getHouseNumber());

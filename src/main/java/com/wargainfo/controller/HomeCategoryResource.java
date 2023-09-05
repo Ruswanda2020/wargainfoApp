@@ -22,9 +22,9 @@ public class HomeCategoryResource {
         homeCategoryService.createNewHomeCategory(dto);
         return ResponseEntity.created(URI.create("/v1/api/homecategory")).build();
     }
-    @GetMapping("/{id}")
-    public ResponseEntity<HomeCategory> findHomeCategoryById(@PathVariable String id){
-        return ResponseEntity.ok().body(homeCategoryService.findHomeCategoryById(id));
+    @GetMapping("/{code}")
+    public ResponseEntity<HomeCategory> findHomeCategoryById(@PathVariable String code){
+        return ResponseEntity.ok().body(homeCategoryService.findHomeCategoryByCode(code));
     }
 
     @PutMapping("/{secureId}")

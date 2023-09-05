@@ -1,5 +1,6 @@
 package com.wargainfo.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -31,7 +32,8 @@ public class Unit extends AbstractBaseEntity{
     @Column(name = "rt",nullable = false)
     private Integer rt;
 
-    @OneToOne
-    @JoinColumn(name = "home_category",nullable = false)
+    @JsonIgnore
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "home_category", nullable = false)
     private HomeCategory homeCategory;
 }

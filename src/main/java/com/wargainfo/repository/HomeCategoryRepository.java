@@ -7,6 +7,6 @@ import java.util.Optional;
 
 public interface HomeCategoryRepository extends JpaRepository<HomeCategory, String> {
 
-    Optional<HomeCategory> findBySecureId(String id);
+    Optional<HomeCategory> findByCode(String id);
     HomeCategory findByName(String name);
 }

@@ -8,8 +8,6 @@ import com.wargainfo.service.HomeCategoryService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.Optional;
-
 @Service
 @AllArgsConstructor
 public class HomeCategoryServiceImpl implements HomeCategoryService {
@@ -18,6 +16,7 @@ public class HomeCategoryServiceImpl implements HomeCategoryService {
     @Override
     public void createNewHomeCategory(HomeCategoryDTO dto) {
         HomeCategory homeCategory = new HomeCategory();
+        homeCategory.setCode(dto.getCode());
         homeCategory.setName(dto.getName());
         homeCategory.setLandArea(dto.getLandArea());
         homeCategory.setBuildingArea(dto.getBuildingArea());
@@ -26,14 +25,14 @@ public class HomeCategoryServiceImpl implements HomeCategoryService {
     }
 
     @Override
-    public HomeCategory findHomeCategoryById(String id) {
-        return homeCategoryRepository.findBySecureId(id)
+    public HomeCategory findHomeCategoryByCode(String code) {
+        return homeCategoryRepository.findByCode(code)
                 .orElseThrow(()-> new ResourceNotFound("Resource not found"));
     }
 
     @Override
-    public void updateHomeCategory(String id, HomeCategoryDTO dto) {
-        HomeCategory homeCategory = homeCategoryRepository.findBySecureId(id)
+    public void updateHomeCategory(String code, HomeCategoryDTO dto) {
+        HomeCategory homeCategory = homeCategoryRepository.findByCode(code)
                 .orElseThrow(()-> new ResourceNotFound("invalid home category id"));
         homeCategory.setName(dto.getName()==null?homeCategory.getName():dto.getName());
         homeCategory.setLandArea(dto.getLandArea()==null?homeCategory.getLandArea(): dto.getLandArea());
@@ -43,8 +42,8 @@ public class HomeCategoryServiceImpl implements HomeCategoryService {
     }
 
     @Override
-    public void deleteHomeCategory(String id) {
-        HomeCategory homeCategory = homeCategoryRepository.findBySecureId(id)
+    public void deleteHomeCategory(String code) {
+        HomeCategory homeCategory = homeCategoryRepository.findByCode(code)
                 .orElseThrow(()-> new ResourceNotFound("record not found"));
         homeCategoryRepository.delete(homeCategory);
     }

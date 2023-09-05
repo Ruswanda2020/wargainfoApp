@@ -3,13 +3,11 @@ package com.wargainfo.service;
 import com.wargainfo.dto.homecategory.HomeCategoryDTO;
 import com.wargainfo.entity.HomeCategory;
 
-import java.util.Optional;
-
 public interface HomeCategoryService {
 
     public void createNewHomeCategory(HomeCategoryDTO dto);
 
-    public HomeCategory findHomeCategoryById(String id);
+    public HomeCategory findHomeCategoryByCode(String code);
 
     public void updateHomeCategory(String id, HomeCategoryDTO dto);
 

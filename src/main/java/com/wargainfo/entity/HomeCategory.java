@@ -3,16 +3,19 @@ package com.wargainfo.entity;
 import jakarta.persistence.*;
 import lombok.Data;
 import java.io.Serial;
+import java.io.Serializable;
+import java.util.List;
 @Entity
 @Data
 @Table(name = "home_category")
-public class HomeCategory extends AbstractBaseEntity {
+public class HomeCategory implements Serializable {
 
     @Serial
     private static final long serialVersionUID = -1339658412692599444L;
+
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @Column(name = "code", nullable = false)
+    private String code;
 
     @Column(name = "name")
     private String name;
@@ -25,4 +28,7 @@ public class HomeCategory extends AbstractBaseEntity {
 
     @Column(name = "fee_amount",nullable = false)
     private Double feeAmount;
+
+    @OneToMany(mappedBy = "homeCategory")
+    private List<Unit> units;
 }
