@@ -56,4 +56,15 @@ public class HomeCategoryServiceImpl implements HomeCategoryService {
         }
         return homeCategory;
     }
+
+    @Override
+    public HomeCategoryDTO constructDTO(HomeCategory homeCategory) {
+        HomeCategoryDTO dto = new HomeCategoryDTO();
+        dto.setCode(homeCategory.getCode());
+        dto.setName(homeCategory.getName());
+        dto.setLandArea(homeCategory.getLandArea());
+        dto.setBuildingArea(homeCategory.getBuildingArea());
+        dto.setFeeAmount(homeCategory.getFeeAmount());
+        return dto;
+    }
 }

@@ -1,31 +1,26 @@
-package com.wargainfo.dto;
+package com.wargainfo.dto.unit;
 
 import com.fasterxml.jackson.databind.PropertyNamingStrategies;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
-import com.wargainfo.entity.HomeCategory;
+import com.wargainfo.dto.homecategory.HomeCategoryDTO;
 import lombok.Data;
 
 import java.io.Serial;
 import java.io.Serializable;
-
-@Data
 @JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
-public class UnitCreateRequestDTO implements Serializable {
+@Data
+public class UnitDetailResponseDTO implements Serializable {
 
     @Serial
-    private static final long serialVersionUID = 862866977435702335L;
+    private static final long serialVersionUID = 6392408056440649211L;
 
+    private String unitId;
     private String housingBlock;
-
     private Integer houseNumber;
-
     private String owner;
-
     private String residentName;
-
     private Integer rt;
-
-    private String homeCategory;
+    private HomeCategoryDTO category;
 
 
 }

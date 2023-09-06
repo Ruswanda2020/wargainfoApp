@@ -14,4 +14,6 @@ public interface HomeCategoryService {
     public void deleteHomeCategory(String id);
 
     public HomeCategory findByName(String name);
+
+    public HomeCategoryDTO constructDTO(HomeCategory homeCategory);
 }

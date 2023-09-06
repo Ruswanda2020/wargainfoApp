@@ -23,7 +23,7 @@ public class HomeCategoryResource {
         return ResponseEntity.created(URI.create("/v1/api/homecategory")).build();
     }
     @GetMapping("/{code}")
-    public ResponseEntity<HomeCategory> findHomeCategoryById(@PathVariable String code){
+    public ResponseEntity<HomeCategory> findHomeCategoryByCode(@PathVariable String code){
         return ResponseEntity.ok().body(homeCategoryService.findHomeCategoryByCode(code));
     }
 
