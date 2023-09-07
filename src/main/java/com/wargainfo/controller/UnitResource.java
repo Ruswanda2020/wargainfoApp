@@ -24,19 +24,19 @@ public class UnitResource {
         return ResponseEntity.created(URI.create("/v1/api/unit")).build();
     }
     @GetMapping("/{secureId}")
-    public ResponseEntity<UnitDetailResponseDTO> findUnitByCode(@PathVariable String secureId){
+    public ResponseEntity<UnitDetailResponseDTO> findUnitByCode(@PathVariable Long secureId){
         UnitDetailResponseDTO result = unitService.findUnitDetailById(secureId);
         return ResponseEntity.ok(result);
     }
 
     @PutMapping("/{secureId}")
-    public ResponseEntity<Void> updateUnit(@PathVariable String secureId, @RequestBody UnitUpdateRequestDTO dto){
+    public ResponseEntity<Void> updateUnit(@PathVariable Long secureId, @RequestBody UnitUpdateRequestDTO dto){
         unitService.updateUnit(secureId,dto);
         return ResponseEntity.ok().build();
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteUnit(@PathVariable String id){
+    public ResponseEntity<Void> deleteUnit(@PathVariable Long id){
         unitService.deleteUnit(id);
         return ResponseEntity.ok().build();
     }

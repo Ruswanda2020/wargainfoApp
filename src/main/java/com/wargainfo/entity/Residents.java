@@ -6,16 +6,21 @@ import jakarta.validation.constraints.Email;
 import lombok.Data;
 
 import java.io.Serial;
+import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.UUID;
 
 
 @Entity
 @Data
 @Table(name = "residents")
-public class Residents extends AbstractBaseEntity {
+public class Residents implements Serializable {
 
     @Serial
     private static final long serialVersionUID = -4651402564542127242L;
+
+    @Column(name = "secure_id", nullable = false, unique = true)
+    private String secureId = UUID.randomUUID().toString();
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -38,6 +43,7 @@ public class Residents extends AbstractBaseEntity {
     private String birthPlace;
 
     @Email
+    @Column(name = "email",unique = true)
     private String email;
 
     @Column(name = "id_card_number",unique = true)
@@ -49,7 +55,7 @@ public class Residents extends AbstractBaseEntity {
     @Column(name = "member_of")
     private Long memberOf;
 
-    @OneToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "unit")
     private Unit unit;
 

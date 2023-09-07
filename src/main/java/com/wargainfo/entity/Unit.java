@@ -5,10 +5,12 @@ import jakarta.persistence.*;
 import lombok.Data;
 
 import java.io.Serial;
+import java.io.Serializable;
+
 @Entity
 @Data
 @Table(name = "unit")
-public class Unit extends AbstractBaseEntity{
+public class Unit implements Serializable {
 
     @Serial
     private static final long serialVersionUID = -8671171555251088567L;

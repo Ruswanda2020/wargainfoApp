@@ -28,7 +28,7 @@ public class ResidentsCreateRequestDTO implements Serializable {
 
     private String birthPlace;
 
-    @Email
+    @Email()
     private String email;
 
 
@@ -38,7 +38,7 @@ public class ResidentsCreateRequestDTO implements Serializable {
 
     private Long memberOf;
 
-    private String unitId;
+    private Long unitId;
 
 
 }

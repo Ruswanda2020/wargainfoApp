@@ -9,11 +9,11 @@ public interface UnitService {
 
     public void createNewUnit(UnitCreateRequestDTO dto);
 
-    public UnitDetailResponseDTO findUnitDetailById(String secureId);
+    public UnitDetailResponseDTO findUnitDetailById(Long secureId);
 
-    public void updateUnit(String secureId, UnitUpdateRequestDTO dto);
+    public void updateUnit(Long secureId, UnitUpdateRequestDTO dto);
 
-    public void deleteUnit(String id);
+    public void deleteUnit(Long id);
 
-    public Unit findUnitById(String secureId);
+    public Unit findUnitById(Long id);
 }

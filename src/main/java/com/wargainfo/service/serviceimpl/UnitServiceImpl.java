@@ -35,12 +35,11 @@ public class UnitServiceImpl implements UnitService{
         unitRepository.save(unit);
     }
     @Override
-    public UnitDetailResponseDTO findUnitDetailById(String secureId) {
-        Unit unit = unitRepository.findBySecureId(secureId)
+    public UnitDetailResponseDTO findUnitDetailById(Long id) {
+        Unit unit = unitRepository.findById(id)
                 .orElseThrow(()-> new ResourceNotFound("RECORD NOT FOUND"));
 
         UnitDetailResponseDTO dto = new UnitDetailResponseDTO();
-        dto.setUnitId(unit.getSecureId());
         dto.setHouseNumber(unit.getHouseNumber());
         dto.setHousingBlock(unit.getHousingBlock());
         dto.setOwner(unit.getOwner());
@@ -51,8 +50,8 @@ public class UnitServiceImpl implements UnitService{
     }
 
     @Override
-    public void updateUnit(String secureId, UnitUpdateRequestDTO dto) {
-        Unit unit = unitRepository.findBySecureId(secureId).
+    public void updateUnit(Long id, UnitUpdateRequestDTO dto) {
+        Unit unit = unitRepository.findById(id).
                 orElseThrow(()-> new ResourceNotFound("Record not Found"));
         unit.setResidentName(dto.getResidentName());
         unit.setOwner(dto.getOwner());
@@ -60,16 +59,16 @@ public class UnitServiceImpl implements UnitService{
     }
 
     @Override
-    public void deleteUnit(String id) {
-        Unit unit = unitRepository.findBySecureId(id)
+    public void deleteUnit(Long id) {
+        Unit unit = unitRepository.findById(id)
                 .orElseThrow(()-> new ResourceNotFound("Record not found"));
         unitRepository.delete(unit);
 
     }
 
     @Override
-    public Unit findUnitById(String secureId) {
-        return unitRepository.findBySecureId(secureId)
+    public Unit findUnitById(Long id) {
+        return unitRepository.findById(id)
                 .orElseThrow(()-> new ResourceNotFound("Record not found"));
     }
 }
