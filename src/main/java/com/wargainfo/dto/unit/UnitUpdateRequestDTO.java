@@ -16,6 +16,4 @@ public class UnitUpdateRequestDTO implements Serializable {
     private String owner;
 
     private String residentName;
-
-    private String homeCategory;
 }

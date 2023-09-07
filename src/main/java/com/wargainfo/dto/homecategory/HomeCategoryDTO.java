@@ -15,8 +15,8 @@ public class HomeCategoryDTO implements Serializable {
     private static final long serialVersionUID = 7663907451301731620L;
     private String code;
     private String name;
-    private Double landArea;
-    private Double buildingArea;
-    private Double feeAmount;
+    private Float landArea;
+    private Float buildingArea;
+    private Float feeAmount;
 
 }

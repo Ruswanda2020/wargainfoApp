@@ -2,6 +2,7 @@ package com.wargainfo.service.serviceimpl;
 
 import com.wargainfo.dto.unit.UnitCreateRequestDTO;
 import com.wargainfo.dto.unit.UnitDetailResponseDTO;
+import com.wargainfo.dto.unit.UnitUpdateRequestDTO;
 import com.wargainfo.entity.HomeCategory;
 import com.wargainfo.entity.Unit;
 import com.wargainfo.exception.ResourceNotFound;
@@ -35,7 +36,8 @@ public class UnitServiceImpl implements UnitService{
     }
     @Override
     public UnitDetailResponseDTO findUnitDetailById(String secureId) {
-        Unit unit = unitRepository.findBySecureId(secureId).orElseThrow(()-> new ResourceNotFound("Record not found"));
+        Unit unit = unitRepository.findBySecureId(secureId)
+                .orElseThrow(()-> new ResourceNotFound("RECORD NOT FOUND"));
 
         UnitDetailResponseDTO dto = new UnitDetailResponseDTO();
         dto.setUnitId(unit.getSecureId());
@@ -46,5 +48,28 @@ public class UnitServiceImpl implements UnitService{
         dto.setRt(unit.getRt());
         dto.setCategory(homeCategoryService.constructDTO(unit.getHomeCategory()));
         return dto;
+    }
+
+    @Override
+    public void updateUnit(String secureId, UnitUpdateRequestDTO dto) {
+        Unit unit = unitRepository.findBySecureId(secureId).
+                orElseThrow(()-> new ResourceNotFound("Record not Found"));
+        unit.setResidentName(dto.getResidentName());
+        unit.setOwner(dto.getOwner());
+        unitRepository.save(unit);
+    }
+
+    @Override
+    public void deleteUnit(String id) {
+        Unit unit = unitRepository.findBySecureId(id)
+                .orElseThrow(()-> new ResourceNotFound("Record not found"));
+        unitRepository.delete(unit);
+
+    }
+
+    @Override
+    public Unit findUnitById(String secureId) {
+        return unitRepository.findBySecureId(secureId)
+                .orElseThrow(()-> new ResourceNotFound("Record not found"));
     }
 }

@@ -22,13 +22,13 @@ public class HomeCategory implements Serializable {
     private String name;
 
     @Column(name = "land_area" ,nullable = false)
-    private Double landArea;
+    private Float landArea;
 
     @Column(name = "building_area", nullable = false)
-    private Double buildingArea;
+    private Float buildingArea;
 
     @Column(name = "fee_amount",nullable = false)
-    private Double feeAmount;
+    private Float feeAmount;
 
     @OneToMany(mappedBy = "homeCategory")
     private List<Unit> units;
